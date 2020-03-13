@@ -2,6 +2,7 @@ package by.brstu.redlabrat.testinternet
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "movie_search")
@@ -11,6 +12,7 @@ data class SearchResultMovie(
     val title: String,
     @SerializedName("Year")
     val year: String,
+    @PrimaryKey
     @SerializedName("imdbID")
     val imdbId: String,
     @SerializedName("Type")

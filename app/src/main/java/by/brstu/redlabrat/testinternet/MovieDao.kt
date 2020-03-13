@@ -7,7 +7,7 @@ import androidx.room.Query
 @Dao
 interface MovieDao {
     @Insert
-    fun addMovie(movie: SearchResultMovie): Int
+    fun addMovie(movie: SearchResultMovie)
 
     @Insert
     fun addMovies(movies: List<SearchResultMovie>)
