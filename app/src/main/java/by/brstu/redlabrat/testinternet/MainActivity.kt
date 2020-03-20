@@ -30,8 +30,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onMovieInfoClick(movie: SearchResultMovie) {
+        val fragment = InfoFragment()
+        val arguments = Bundle()
+        arguments.putString(InfoFragment.IMAGE_URL_KEY, movie.posterUrl)
+        fragment.arguments = arguments
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, InfoFragment(movie.posterUrl), null)
+            .add(R.id.fragment_container, fragment, null)
             .addToBackStack("InfoFragment")
             .commit()
     }

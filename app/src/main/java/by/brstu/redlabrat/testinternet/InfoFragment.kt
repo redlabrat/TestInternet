@@ -13,7 +13,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-class InfoFragment(private val imageUrl: String) : Fragment() {
+class InfoFragment : Fragment() {
+
+    private var imageUrl: String = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        imageUrl = arguments?.getString(IMAGE_URL_KEY) ?: ""
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,5 +39,9 @@ class InfoFragment(private val imageUrl: String) : Fragment() {
                 imageViewForInfo.setImageBitmap(bitmap)
             }
         }
+    }
+
+    companion object {
+        const val IMAGE_URL_KEY = "image url key"
     }
 }
