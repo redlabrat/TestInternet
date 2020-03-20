@@ -1,15 +1,13 @@
 package by.brstu.redlabrat.testinternet
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface MovieDao {
     @Insert
     fun addMovie(movie: SearchResultMovie)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addMovies(movies: List<SearchResultMovie>)
 
     @Query("select * from movie_search")

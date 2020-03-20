@@ -16,8 +16,13 @@ import java.net.URL
 
 class ListAdapter(
     val context: Context,
-    var listOfMovies: List<SearchResultMovie>
+    var listOfMovies: List<SearchResultMovie>,
+    val onItemClickListener: OnItemClickListener
 ): RecyclerView.Adapter<ListAdapter.ViewCell>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(movie: SearchResultMovie)
+    }
 
     class ViewCell(cellView: View): RecyclerView.ViewHolder(cellView) {
         val titleText: TextView = cellView.findViewById(R.id.titleText)
@@ -38,6 +43,9 @@ class ListAdapter(
         val movie = listOfMovies[position]
         holder.titleText.text = movie.title
         holder.titleYear.text = movie.year
+
+        holder.itemView.setOnClickListener { onItemClickListener.onItemClick(movie) }
+
         GlobalScope.launch {
             val stream = URL(movie.posterUrl).openStream()
             val bitmap = BitmapFactory.decodeStream(stream)
